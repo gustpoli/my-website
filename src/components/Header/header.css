@@ -1,0 +1,17 @@
+.pageHeader{
+
+    border-color: var(--md-sys-color-surface-variant);
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+
+}
+
+.pageHeader .logo .dot{
+    color: var(--md-sys-color-primary) !important;
+    font-size: 2rem;
+    line-height: 1px;
+}
+
+.pageHeader .navbar > a.active{
+    color: var(--md-sys-color-primary) !important;
+}
