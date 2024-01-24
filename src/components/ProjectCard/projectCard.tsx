@@ -33,7 +33,10 @@ export default function projectCard(props: props) {
       style={{ backgroundColor: 'var(--md-sys-color-surface-dim)' }}
     >
       {project && (
-        <div className="projectCard-infos absolute flex flex-col justify-between p-1 pt-7 sm:p-3 sm:pt-10 w-full h-full text-xs sm:text-sm text-white">
+        <div
+          className="projectCard-infos absolute flex flex-col justify-between p-1 pt-7 sm:p-3 sm:pt-10 w-full h-full text-xs sm:text-sm"
+          style={{ color: 'var(--md-sys-color-on-surface)' }}
+        >
           {project.name && (
             <span
               className=" rounded-2xl p-2 px-3 w-fit text-center"

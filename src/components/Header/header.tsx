@@ -35,15 +35,46 @@ const toggleTheme = () => {
   const html = document.getElementsByTagName('html')[0]
 
   const theme = getCookie('theme') ?? 'dark'
-  if (theme === 'dark') {
-    html.classList.remove('dark')
-    html.classList.add('light')
-    setCookie('theme', 'light')
-  } else {
+  if (theme === 'light') {
     html.classList.remove('light')
     html.classList.add('dark')
     setCookie('theme', 'dark')
+    return 'dark'
+  } else {
+    html.classList.remove('dark')
+    html.classList.add('light')
+    setCookie('theme', 'light')
+    return ''
   }
+}
+
+const ThemeToggler = () => {
+  const [theme, setTheme] = useState(getCookie('theme'))
+
+  const handleClick = () => {
+    const newTheme = toggleTheme()
+    setTheme(newTheme)
+  }
+
+  return (
+    <>
+      {theme == 'dark' ? (
+        <span
+          className="material-symbols-outlined cursor-pointer"
+          onClick={handleClick}
+        >
+          dark_mode
+        </span>
+      ) : (
+        <span
+          className="material-symbols-outlined cursor-pointer"
+          onClick={handleClick}
+        >
+          light_mode
+        </span>
+      )}
+    </>
+  )
 }
 
 export default function Header() {
@@ -61,7 +92,7 @@ export default function Header() {
             <span className="dot">.</span>
           </Link>
         </div>
-        <div className="flex gap-3+">
+        <div className="flex gap-3">
           <div className="hidden sm:flex items-center gap-4">
             <nav className="navbar flex gap-3">
               <Navlink href="/">Home</Navlink>
@@ -71,14 +102,8 @@ export default function Header() {
             </nav>
           </div>
           <div className="flex gap-3">
-            <div className=" flex items-center gap-2">
-              <span
-                id="toggleThemeButton"
-                className="material-symbols-outlined cursor-pointer	"
-                onClick={toggleTheme}
-              >
-                contrast
-              </span>
+            <div className=" flex items-center gap-2 h-min">
+              <ThemeToggler></ThemeToggler>
             </div>
             <button
               className="flex items-center sm:hidden"

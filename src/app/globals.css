@@ -101,7 +101,7 @@ body {
   --md-sys-color-background: rgb(245 250 252);
   --md-sys-color-on-background: rgb(23 29 30);
   --md-sys-color-surface: rgb(245 250 252);
-  --color-surface-transparent: rgb(245, 250, 252, .5);
+  --color-surface-transparent: rgb(245, 250, 252, .85);
   --md-sys-color-on-surface: rgb(23 29 30);
   --md-sys-color-surface-variant: rgb(219 228 231);
   --md-sys-color-on-surface-variant: rgb(63 72 75);
