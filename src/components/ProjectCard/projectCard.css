@@ -1,0 +1,8 @@
+.projectCard-infos{
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
+
+.projectCard:hover .projectCard-infos{
+    opacity: 1;
+}

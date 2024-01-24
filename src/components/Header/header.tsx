@@ -1,9 +1,10 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import Navlink from '@/components/Navlink/navlink'
 
 import './header.css'
+import Link from 'next/link'
+import { useState } from 'react'
 
 function setCookie(nome: string, valor: string, diasExpiracao: number = 7) {
   const dataExpiracao = new Date()
@@ -46,53 +47,64 @@ const toggleTheme = () => {
 }
 
 export default function Header() {
-  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="pageHeader flex justify-center p-3 w-full text-md border-b">
+    <header
+      id="header"
+      className="pageHeader flex flex-col justify-center sm:items-center p-3 w-full text-md border-b lg:px-[160px]"
+    >
       <div className="w-full lg:container flex justify-between">
-        <div className="logo cursor-pointer	">
-          <span className="text">Gustavo</span>
-          <span className="dot">.</span>
+        <div className="logo flex items-center cursor-pointer	">
+          <Link href="/">
+            <span className="text">Gustavo</span>
+            <span className="dot">.</span>
+          </Link>
         </div>
-        <div className=" flex gap-4">
-          <nav className="hidden md:flex navbar gap-3">
-            <Link className={`${pathname === '/' ? 'active' : ''}`} href="/">
-              Home
-            </Link>
-            <Link
-              className={`${pathname === '/About' ? 'active' : ''}`}
-              href="/About"
+        <div className="flex gap-3+">
+          <div className="hidden sm:flex items-center gap-4">
+            <nav className="navbar flex gap-3">
+              <Navlink href="/">Home</Navlink>
+              <Navlink href="/About">About</Navlink>
+              <Navlink href="/Portfolio">Portfolio</Navlink>
+              <Navlink href="/Contacts">Contacts</Navlink>
+            </nav>
+          </div>
+          <div className="flex gap-3">
+            <div className=" flex items-center gap-2">
+              <span
+                id="toggleThemeButton"
+                className="material-symbols-outlined cursor-pointer	"
+                onClick={toggleTheme}
+              >
+                contrast
+              </span>
+            </div>
+            <button
+              className="flex items-center sm:hidden"
+              onClick={() => {
+                setOpen(!open)
+              }}
             >
-              About
-            </Link>
-            <Link
-              className={`${pathname === '/Portfolio' ? 'active' : ''}`}
-              href="/Portfolio"
-            >
-              Portfolio
-            </Link>
-            <Link
-              className={`${pathname === '/Contacts' ? 'active' : ''}`}
-              href="/Contacts"
-            >
-              Contacts
-            </Link>
-          </nav>
-          <div className=" flex gap-2">
-            <span
-              id="toggleThemeButton"
-              className="material-symbols-outlined cursor-pointer	"
-              onClick={toggleTheme}
-            >
-              dark_mode
-            </span>
-            <span className="material-symbols-outlined cursor-pointer	">
-              globe
-            </span>
+              <span
+                id="toggleMenuButton"
+                className="material-symbols-outlined cursor-pointer "
+              >
+                menu
+              </span>
+            </button>
           </div>
         </div>
       </div>
+      {open && (
+        <nav className="navbar sm:hidden flex flex-col gap-2 mt-5">
+          <Navlink href="/">Home</Navlink>
+          <Navlink href="/About">About</Navlink>
+          <Navlink href="/Portfolio">Portfolio</Navlink>
+          <Navlink href="/Contacts">Contacts</Navlink>
+          <Navlink href="/Curriculum">Curriculum</Navlink>
+        </nav>
+      )}
     </header>
   )
 }

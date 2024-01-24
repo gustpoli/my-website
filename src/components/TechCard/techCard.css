@@ -1,0 +1,8 @@
+.techCard{
+    top: 0px;
+    transition: top .2s ease-in-out;
+}
+
+.techCard:hover{
+    top: -5px;
+}

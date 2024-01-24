@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import { getTheme } from '@/utils/theme'
 
 import './globals.css'
+import Header from '@/components/Header/header'
+import Footer from '@/components/Footer/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +25,11 @@ export default function RootLayout({
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header></Header>
+        {children}
+        <Footer></Footer>
+      </body>
     </html>
   )
 }
